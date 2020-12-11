@@ -23,20 +23,16 @@ namespace PersonBook
                "4- Delete Person\n " +
                "5- exit\n");
                 string option = Console.ReadLine();
-                if (option.Equals("5"))
-                {
-                    Console.WriteLine("Bye - Wish to see you again");
-                    break;
-                }
+              
                 switch (option)
                 {
                     case  "1":
 
-                            pservice.ListPersons().ForEach(e => {
+                            pservice.ListPersons().ForEach(p => {
                                 Console.WriteLine("********************************\n");
-                                Console.WriteLine("Id : " + e.Id + "\n" +
-                                    "First Name : " + e.FirstName + "\n" +
-                                    "Last Name : " + e.LastName);
+                                Console.WriteLine("Id : " + p.Id + "\n" +
+                                    "First Name : " + p.FirstName + "\n" +
+                                    "Last Name : " + p.LastName);
                                 Console.WriteLine("********************************\n");
                             });
                         break;
@@ -66,6 +62,9 @@ namespace PersonBook
                         int deleteId = int.Parse(Console.ReadLine());
                         pservice.DeletePerson(deleteId);
                         break;
+                    case "5":
+                        Console.WriteLine("Bye - Wish to see you again");
+                        return;
 
                     default:
                         Console.WriteLine("Please enter a valid number...");
