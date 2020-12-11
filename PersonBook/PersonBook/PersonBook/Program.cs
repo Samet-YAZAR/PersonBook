@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonBook.Service;
+using System;
 
 namespace PersonBook
 {
@@ -7,7 +8,7 @@ namespace PersonBook
        //
         static void Main(string[] args)
         {
-
+            PersonService pservice = new PersonService();
 
             while (true)
             {
