@@ -6,9 +6,9 @@ namespace PersonBook
 {
     interface IPersonService<Person>
     {
-        public List<Person> ListPersons();
-        public void DeletePerson(int id);
-        public void AddPerson(Person person);
-        public void UpdatePerson(Person person);
+         ICollection<Person> ListPersons();
+         void DeletePerson(int id);
+         void AddPerson(string name, string surname);
+         void UpdatePerson(int Id,string name,string surname);
     }
 }

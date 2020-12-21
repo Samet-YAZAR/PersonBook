@@ -1,4 +1,4 @@
-﻿using PersonBook.Entity;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,19 +6,28 @@ using System.Text;
 
 namespace PersonBook.Service
 {
-    class PersonService : IPersonService<Person>
+    using Entity;
+
+     class PersonService : IPersonService<Person>
     {
-        private List<Person> _personList;
+        private ICollection<Person> _personList;
+
         private readonly Random _random = new Random();
 
-        public PersonService()
+        public PersonService() 
         {
             _personList = new List<Person>();
         }
-        public void AddPerson(Person person)
+        public void AddPerson(string name,string surname)
         {
-            person.Id = _random.Next(1000, 9999);
-            _personList.Add(person);
+            var Id = _random.Next(1000, 9999);
+            _personList.Add(
+                new Person
+                {
+                   Id = Id,
+                   FirstName= name,
+                   LastName=surname
+                }) ; 
         }
 
         public void DeletePerson(int id)
@@ -31,17 +40,17 @@ namespace PersonBook.Service
             }
         }
 
-        public List<Person> ListPersons()
+        public ICollection<Person> ListPersons()
         {
 
             return _personList;
         }
 
-        public void UpdatePerson(Person person)
+        public void UpdatePerson(int Id,string name,string surname)
         {
-            Person p = _personList.FirstOrDefault(i => i.Id == person.Id);
-            p.FirstName = person.FirstName;
-            p.LastName = person.LastName;
+            Person p = _personList.FirstOrDefault(i => i.Id == Id);
+            p.FirstName =name;
+            p.LastName = surname;
         }
     }
 }
