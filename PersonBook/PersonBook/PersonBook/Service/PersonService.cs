@@ -8,7 +8,7 @@ namespace PersonBook.Service
     using CustomExceptions;
     using Entity;
 
-    class PersonService : IPersonService<Person>
+    public class PersonService : IPersonService<Person>
     {
         private ICollection<Person> _personList;
         public PersonService()
@@ -34,7 +34,7 @@ namespace PersonBook.Service
 
             var personToRemove = _personList.SingleOrDefault(p => p.Id == id);
 
-            if (personToRemove==null)
+            if (personToRemove == null)
             {
                 throw new IdNotExistException(id);
             }

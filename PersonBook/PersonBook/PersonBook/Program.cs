@@ -8,12 +8,13 @@ namespace PersonBook
 
     class Program
     {
+        
         static void Main(string[] args)
         {
             var personService = new PersonService();
-            var flag = true;
+            var isContinued = true;
 
-            while (flag)
+            while (isContinued)
             {
                 PrintOptions();
                 string option = Console.ReadLine();
@@ -21,10 +22,7 @@ namespace PersonBook
                 switch (option)
                 {
                     case "1":
-                        foreach (Person item in personService.ListPersons())
-                        {
-                            ShowPerson(item);
-                        }
+                            ShowPersons();             
                         break;
 
                     case "2":
@@ -36,8 +34,7 @@ namespace PersonBook
 
                     case "3":
                         Console.WriteLine("Id : \nName: \nSurname : ");
-                        int id;
-                        Int32.TryParse(Console.ReadLine(), out id);
+                        Int32.TryParse(Console.ReadLine(), out var id);
                         string inputName = Console.ReadLine();
                         string inputSurname = Console.ReadLine();
                         try
@@ -52,8 +49,7 @@ namespace PersonBook
 
                     case "4":
                         Console.WriteLine("Id: ");
-                        int number;
-                        Int32.TryParse(Console.ReadLine(),out number);
+                        Int32.TryParse(Console.ReadLine(),out var number);
                         try 
                         {
                             personService.DeletePerson(number);
@@ -67,7 +63,7 @@ namespace PersonBook
 
                     case "5":
                         Console.WriteLine("Good Bye!");
-                        flag = false;
+                        isContinued = false;
                         break;
 
                     default:
@@ -78,13 +74,18 @@ namespace PersonBook
 
         }
 
-        private static void ShowPerson(Person p)
+        private static void ShowPersons()
         {
-            Console.WriteLine("********************************\n");
-            Console.WriteLine("Id : " + p.Id + "\n" +
-                "First Name : " + p.FirstName + "\n" +
-                "Last Name : " + p.LastName);
-            Console.WriteLine("********************************\n");
+            var personService = new PersonService();
+            foreach (Person p in personService.ListPersons())
+            {
+
+                Console.WriteLine("********************************\n");
+                Console.WriteLine("Id : " + p.Id + "\n" +
+                    "First Name : " + p.FirstName + "\n" +
+                    "Last Name : " + p.LastName);
+                Console.WriteLine("********************************\n");
+            }
         }
 
         private static void PrintOptions()
