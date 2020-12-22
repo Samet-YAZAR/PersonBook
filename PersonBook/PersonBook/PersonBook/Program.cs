@@ -3,6 +3,7 @@
 namespace PersonBook
 {
     using Entity;
+    using PersonBook.CustomExceptions;
     using Service;
 
     class Program
@@ -37,18 +38,34 @@ namespace PersonBook
                     case "3":
 
                         Console.WriteLine("Id : \nName: \nSurname : ");
-                        int inputId;
-                        Int32.TryParse(Console.ReadLine(), out inputId);
+                        int id;
+                        Int32.TryParse(Console.ReadLine(), out id);
                         string inputName = Console.ReadLine();
                         string inputSurname = Console.ReadLine();
-                        personService.UpdatePerson(inputId,inputName,inputSurname);
+                        try
+                        {
+                            personService.UpdatePerson(id, inputName, inputSurname);
+                        }
+                        catch (IdNotExistException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        
                         break;
 
                     case "4":
                         Console.WriteLine("Id: ");
                         int number;
                         Int32.TryParse(Console.ReadLine(),out number);
-                        personService.DeletePerson(number);
+                        try 
+                        {
+                            personService.DeletePerson(number);
+                        }
+                        catch(IdNotExistException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        
                         break;
 
                     case "5":
