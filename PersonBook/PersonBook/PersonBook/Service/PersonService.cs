@@ -21,25 +21,25 @@ namespace PersonBook.Service
             int Id = IdGenerator();
 
             _personList.Add(
-           new Person
-           {
-               Id = Id,
-               FirstName = name,
-               LastName = surname
-           });
+                   new Person
+                   {
+                       Id = Id,
+                       FirstName = name,
+                       LastName = surname
+                   });
         }
 
         public void DeletePerson(int id)
         {
 
-            var isPersonExist = _personList.Any(p => p.Id == id);
+            var personToRemove = _personList.Single(p => p.Id == id);
 
-            if (!isPersonExist)
+            if (personToRemove==null)
             {
                 throw new IdNotExistException(id);
             }
 
-            _personList.Remove((Person)_personList.Where(e => e.Id == id));
+            _personList.Remove(personToRemove);
 
         }
 

@@ -3,7 +3,7 @@
 namespace PersonBook
 {
     using Entity;
-    using PersonBook.CustomExceptions;
+    using CustomExceptions;
     using Service;
 
     class Program
@@ -11,7 +11,7 @@ namespace PersonBook
         static void Main(string[] args)
         {
             var personService = new PersonService();
-            bool flag = true;
+            var flag = true;
 
             while (flag)
             {
@@ -28,7 +28,6 @@ namespace PersonBook
                         break;
 
                     case "2":
-
                         Console.WriteLine("Name: \nSurname : ");
                         string name = Console.ReadLine();
                         string surname = Console.ReadLine();                     
@@ -36,7 +35,6 @@ namespace PersonBook
                         break;
 
                     case "3":
-
                         Console.WriteLine("Id : \nName: \nSurname : ");
                         int id;
                         Int32.TryParse(Console.ReadLine(), out id);
@@ -50,7 +48,6 @@ namespace PersonBook
                         {
                             Console.WriteLine(ex.Message);
                         }
-                        
                         break;
 
                     case "4":
