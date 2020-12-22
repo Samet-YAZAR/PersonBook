@@ -32,7 +32,7 @@ namespace PersonBook.Service
         public void DeletePerson(int id)
         {
 
-            var personToRemove = _personList.Single(p => p.Id == id);
+            var personToRemove = _personList.SingleOrDefault(p => p.Id == id);
 
             if (personToRemove==null)
             {
