@@ -8,7 +8,7 @@ namespace PersonBook.Service
     using CustomExceptions;
     using Entity;
 
-    public class PersonService : IPersonService<Person>
+    public class PersonService : IPersonService
     {
         private ICollection<Person> _personList;
         public PersonService()
