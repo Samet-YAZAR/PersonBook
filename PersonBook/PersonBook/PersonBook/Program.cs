@@ -8,11 +8,12 @@ namespace PersonBook
 
     class Program
     {
-        private const string Show = "1";
-        private const string Add = "2";
+        private const string Show   = "1";
+        private const string Add    = "2";
         private const string Update = "3";
         private const string Delete = "4";
-        private const string Exit = "5";
+        private const string Exit   = "5";
+
         static void Main(string[] args)
         {
             var personService = new PersonService();
