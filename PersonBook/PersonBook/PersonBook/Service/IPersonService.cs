@@ -1,10 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PersonBook
 {
-    interface IPersonService<Person>
+    using Entity;
+    interface IPersonService
     {
         ICollection<Person> ListPersons();
         void DeletePerson(int id);
