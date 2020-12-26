@@ -18,12 +18,12 @@ namespace PersonBook.Service
 
         public void AddPerson(string name, string surname)
         {
-            int Id = IdGenerator();
+            int id = GenerateId();
 
             _personList.Add(
                    new Person
                    {
-                       Id = Id,
+                       Id = id,
                        FirstName = name,
                        LastName = surname
                    });
@@ -32,14 +32,14 @@ namespace PersonBook.Service
         public void DeletePerson(int id)
         {
 
-            var personToRemove = _personList.SingleOrDefault(p => p.Id == id);
+            var person = _personList.FirstOrDefault(p => p.Id == id);
 
-            if (personToRemove == null)
+            if (person == null)
             {
                 throw new IdNotExistException(id);
             }
 
-            _personList.Remove(personToRemove);
+            _personList.Remove(person);
 
         }
 
@@ -59,7 +59,7 @@ namespace PersonBook.Service
             p.FirstName = name;
             p.LastName = surname;
         }
-        private int IdGenerator()
+        private int GenerateId()
         {
             return _personList.Count > 0 ? _personList.Max(p => p.Id) + 1 : 1;
         }

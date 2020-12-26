@@ -8,11 +8,16 @@ namespace PersonBook
 
     class Program
     {
-        
+        private const string Show = "1";
+        private const string Add = "2";
+        private const string Update = "3";
+        private const string Delete = "4";
+        private const string Exit = "5";
         static void Main(string[] args)
         {
             var personService = new PersonService();
             var isContinued = true;
+            
 
             while (isContinued)
             {
@@ -21,18 +26,18 @@ namespace PersonBook
 
                 switch (option)
                 {
-                    case "1":
+                    case Show:
                             ShowPersons();             
                         break;
 
-                    case "2":
+                    case Add:
                         Console.WriteLine("Name: \nSurname : ");
                         string name = Console.ReadLine();
                         string surname = Console.ReadLine();                     
                         personService.AddPerson(name,surname);
                         break;
 
-                    case "3":
+                    case Update:
                         Console.WriteLine("Id : \nName: \nSurname : ");
                         Int32.TryParse(Console.ReadLine(), out var id);
                         string inputName = Console.ReadLine();
@@ -47,7 +52,7 @@ namespace PersonBook
                         }
                         break;
 
-                    case "4":
+                    case Delete:
                         Console.WriteLine("Id: ");
                         Int32.TryParse(Console.ReadLine(),out var number);
                         try 
@@ -61,7 +66,7 @@ namespace PersonBook
                         
                         break;
 
-                    case "5":
+                    case Exit:
                         Console.WriteLine("Good Bye!");
                         isContinued = false;
                         break;
